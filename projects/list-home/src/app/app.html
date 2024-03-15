@@ -1,0 +1,16 @@
+<h1>My To Do List</h1>
+<ul class="todo_list">
+    @for (user of list; track user) {
+    @if (true) {
+    <li class="user-card" [class.done]="user.done" [class.important]="user.important">
+        {{user.task}}
+        @if (user.date) {<span class="deadline">
+            {{user.date.getFullYear()}}.{{user.date.getMonth().toString().padStart(2,'0')}}.{{user.date.getDay().toString().padStart(2,'0')}}
+        </span>}
+    </li>
+    }
+    @else {
+    <app-list-item [task]="user"></app-list-item>
+    }
+    }
+</ul>

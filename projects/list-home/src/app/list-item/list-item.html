@@ -1,0 +1,6 @@
+<li class="task-card" [class.done]="task.done" [class.important]="task.important">
+    {{task.task}}
+    @if (task.date) {<span class="deadline">
+        {{task.date.getFullYear()}}.{{task.date.getMonth().toString().padStart(2,'0')}}.{{task.date.getDay().toString().padStart(2,'0')}}
+    </span>}
+</li>
