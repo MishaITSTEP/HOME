@@ -1,23 +1,31 @@
+<nav>
+    <input (keyup.enter)="find_by_word()" (keyup.escape)="filter.value='';reset()" [(ngModel)]="searchWord" #filter
+        placeholder="Введіть назву" type="text">
+    <label for="#filter" (click)="find_by_word()">🔍</label>
+    <label *ngIf="filter.value!=''" (click)="reset()">❌</label>
+</nav>
+<hr>
+<h1>My To Do List</h1>
+<hr>
+
+
+<app-add-item (addItemEvent)="addItem($event)"></app-add-item>
+
+
+<hr>
+<div style="display: flex;flex-direction: row;justify-content: space-between;">
+    <button (click)="sort_by('done')">
+        Done{{(_tag=='done')?(_Up)?'↑':'↓':''}}</button>
+    <button (click)="sort_by('important')">
+        Important{{(_tag=='important')?(_Up)?'↑':'↓':''}}</button>
+    <button (click)="sort_by('task')" style="width: 100%;">
+        Task{{(_tag=='task')?(_Up)?'↑':'↓':''}}</button>
+    <button (click)="sort_by('date')">
+        Date{{(_tag=='date')?(_Up)?'↑':'↓':''}}</button>
+    <button (click)="sort_by('')">❌</button>
+</div>
+
 <ul class="todo_list">
-    <div>
-        <input (keyup.enter)="find_by_word()" (keyup.escape)="filter.value='';reset()" [(ngModel)]="searchWord" #filter
-            placeholder="Введіть назву" type="text">
-        <label for="#filter" (click)="find_by_word()">🔍</label>
-        <label *ngIf="filter.value!=''" (click)="reset()">❌</label>
-    </div>
-    <h1>My To Do List</h1>
-    <hr>
-    <div style="display: flex;flex-direction: row;justify-content: space-between;">
-        <button (click)="sort_by('done')">
-            Done{{(_tag=='done')?(_Up)?'↑':'↓':''}}</button>
-        <button (click)="sort_by('important')">
-            Important{{(_tag=='important')?(_Up)?'↑':'↓':''}}</button>
-        <button (click)="sort_by('task')" style="width: 100%;">
-            Task{{(_tag=='task')?(_Up)?'↑':'↓':''}}</button>
-        <button (click)="sort_by('date')">
-            Date{{(_tag=='date')?(_Up)?'↑':'↓':''}}</button>
-        <button (click)="sort_by('')">❌</button>
-    </div>
     @for (_item of list; track _item; let i = $index) {
     <app-list-item [item]="_item" (removeItemEvent)="app_remoteItem(i)" [index]="i"></app-list-item>
     }@empty {
@@ -26,12 +34,14 @@
     <app-list-item [item]="_item" (removeItemEvent)="app_remoteItem(i)" [index]="i"></app-list-item>
     }@empty {<h2>List is Empty!</h2>}
     }
-    <hr>
-    <details>
-        <summary>All list items</summary>
+</ul>
+<hr>
+<details>
+    <summary>All list items</summary>
+    <ul class="todo_list">
         @for (_item of List; track _item; let i = $index) {
         <app-list-item [item]="_item" (removeItemEvent)="app_remoteItem(i)" [index]="i"></app-list-item>
         }@empty {<h2>List is Empty!</h2>}
-    </details>
-    <hr>
-</ul>
+    </ul>
+</details>
+<hr>

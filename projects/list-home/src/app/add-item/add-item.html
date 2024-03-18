@@ -1,0 +1,32 @@
+<form [formGroup]="creationForm" (ngSubmit)="create()">
+    <div class="container">
+        <table>
+            <tr>
+                <th>Property</th>
+                <th>Value</th>
+            </tr>
+            <tr>
+                <td>Done</td>
+                <td><input formControlName="done" type="checkbox"></td>
+            </tr>
+            <tr>
+                <td>Important</td>
+                <td><input formControlName="important" type="checkbox"></td>
+            </tr>
+            <tr>
+                <td>Task</td>
+                <td><input formControlName="task" type="text"></td>
+            </tr>
+            <tr>
+                <td>Date</td>
+                <td><input formControlName="date" type="date"></td>
+            </tr>
+        </table>
+        <div>
+            <button type="submit">Create</button>
+            <button type="reset">Cancel</button>
+            <meta http-equiv="refresh" content="100; http://localhost:4200/">
+        </div>
+    </div>
+
+</form>

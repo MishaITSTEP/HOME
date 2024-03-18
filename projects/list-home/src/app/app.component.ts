@@ -5,13 +5,14 @@ import { ListItemComponent } from './list-item/list-item.component';
 import { FormsModule } from '@angular/forms';
 import { IfElsePipePipe } from '../../if-else-pipe.pipe';
 import { NgIf } from '@angular/common';
+import { AddItemComponent } from "./add-item/add-item.component";
 
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [RouterOutlet, ListItemComponent, FormsModule, IfElsePipePipe, NgIf],
     templateUrl: "app.html",
-    styleUrl: "app.css"
+    styleUrl: "app.css",
+    imports: [RouterOutlet, ListItemComponent, FormsModule, IfElsePipePipe, NgIf, AddItemComponent]
 })
 export class AppComponent {
     title = 'List_Home';
@@ -21,7 +22,7 @@ export class AppComponent {
         task: '',
         date: null
     }
-    List: IListItem[] = ITEMS;
+    List: IListItem[] = ITEMS.slice(0, 5);
     list: IListItem[] = [...this.List];
 
     _tag!: string;
@@ -32,7 +33,11 @@ export class AppComponent {
         return res;
     }
     constructor() {
-        // this.sort_by('done');
+        var res = localStorage.getItem('List');
+        // if (res) {
+        //     // this.List = (JSON.parse(res) as IListItem[]);
+        //     this.list = [...this.List = (JSON.parse(res) as IListItem[])];
+        // }
     }
     searchWord!: string;
     find_by_word() {
@@ -49,14 +54,19 @@ export class AppComponent {
         var Index = this.List.findIndex(item => item.task == val);
         this.list.splice(index, 1);
         this.List.splice(Index, 1);
+
+        // var res = localStorage.setItem('List', JSON.stringify(this.List));
+    }
+    addItem(item: IListItem): void {
+        this.list.push(item);
     }
     onKeyPress(event: KeyboardEvent, value: string) {
         if (event.key === 'Enter') {
             // Викликати метод reset(), якщо натиснута клавіша "Enter"
             // this.find_by_word(value);
-
         }
     }
+
     sort_by(tag: string) {
         // this.list = [...this.list];
         var params;
