@@ -19,7 +19,7 @@ export class ListItemComponent {
             task: "Empty"
         };
     @Output() removeItemEvent = new EventEmitter<number>();
-    item_remoteItem(i: number) {
+    removeItem(i: number) {
         this.removeItemEvent.emit(i);
     }
 }

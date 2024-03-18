@@ -13,6 +13,8 @@
 
 .item::before {
     content: url(../../assets/unchecked_16.png);
+    content: '☐';
+    transform: scale(1.5);
 }
 
 .done {
@@ -26,6 +28,7 @@
 
 .item.done::before {
     content: url(../../assets/checked_16.png);
+    content: '☑';
 }
 
 .item:hover {

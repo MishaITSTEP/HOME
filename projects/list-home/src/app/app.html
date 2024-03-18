@@ -1,7 +1,7 @@
 <nav>
-    <input (keyup.enter)="find_by_word()" (keyup.escape)="filter.value='';reset()" [(ngModel)]="searchWord" #filter
-        placeholder="Введіть назву" type="text">
-    <label for="#filter" (click)="find_by_word()">🔍</label>
+    <input id="fi" (keyup.enter)="find_by_word()" (keyup.escape)="filter.value='';reset()" [(ngModel)]="searchWord"
+        #filter placeholder="Введіть назву" type="text">
+    <label for="fi" (click)="find_by_word()">🔍</label>
     <label *ngIf="filter.value!=''" (click)="reset()">❌</label>
 </nav>
 <hr>
@@ -27,11 +27,11 @@
 
 <ul class="todo_list">
     @for (_item of list; track _item; let i = $index) {
-    <app-list-item [item]="_item" (removeItemEvent)="app_remoteItem(i)" [index]="i"></app-list-item>
+    <app-list-item [item]="_item" (removeItemEvent)="removeItem(i)" [index]="i"></app-list-item>
     }@empty {
     <h2>Not Found!</h2>
     @for (_item of List; track _item; let i = $index) {
-    <app-list-item [item]="_item" (removeItemEvent)="app_remoteItem(i)" [index]="i"></app-list-item>
+    <app-list-item [item]="_item" (removeItemEvent)="removeItem(i)" [index]="i"></app-list-item>
     }@empty {<h2>List is Empty!</h2>}
     }
 </ul>
@@ -40,7 +40,7 @@
     <summary>All list items</summary>
     <ul class="todo_list">
         @for (_item of List; track _item; let i = $index) {
-        <app-list-item [item]="_item" (removeItemEvent)="app_remoteItem(i)" [index]="i"></app-list-item>
+        <app-list-item [item]="_item" (removeItemEvent)="removeItem(i)" [index]="i"></app-list-item>
         }@empty {<h2>List is Empty!</h2>}
     </ul>
 </details>

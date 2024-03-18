@@ -3,5 +3,5 @@
         <span [class.important]="item.important" #a>{{item.task}}</span>
     </span>
    <span *ngIf="item.date" class="deadline">{{item.date|date:"dd/MM/yyyy"}}</span>
-    <span (click)="item_remoteItem(index)">❌</span>
+    <span (click)="removeItem(index)">❌</span>
 </div>

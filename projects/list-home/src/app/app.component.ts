@@ -22,7 +22,7 @@ export class AppComponent {
         task: '',
         date: null
     }
-    List: IListItem[] = ITEMS.slice(0, 5);
+    List: IListItem[] = ITEMS;
     list: IListItem[] = [...this.List];
 
     _tag!: string;
@@ -33,11 +33,15 @@ export class AppComponent {
         return res;
     }
     constructor() {
+        // this.load();
+        // this.save();
+    }
+    load() {
         var res = localStorage.getItem('List');
-        // if (res) {
-        //     // this.List = (JSON.parse(res) as IListItem[]);
-        //     this.list = [...this.List = (JSON.parse(res) as IListItem[])];
-        // }
+        if (res) this.list = [...this.List = (JSON.parse(res) as IListItem[])];
+    }
+    save() {
+        localStorage.setItem('List', JSON.stringify(this.List));
     }
     searchWord!: string;
     find_by_word() {
@@ -49,22 +53,16 @@ export class AppComponent {
         this.list = [...this.List];
         this.searchWord = '';
     }
-    app_remoteItem(index: number) {
+    removeItem(index: number) {
         var val = this.list[index].task;
         var Index = this.List.findIndex(item => item.task == val);
         this.list.splice(index, 1);
         this.List.splice(Index, 1);
-
-        // var res = localStorage.setItem('List', JSON.stringify(this.List));
+        this.save();
     }
     addItem(item: IListItem): void {
-        this.list.push(item);
-    }
-    onKeyPress(event: KeyboardEvent, value: string) {
-        if (event.key === 'Enter') {
-            // Викликати метод reset(), якщо натиснута клавіша "Enter"
-            // this.find_by_word(value);
-        }
+        this.list = [item, ...this.list]
+        this.save();
     }
 
     sort_by(tag: string) {
@@ -82,25 +80,20 @@ export class AppComponent {
                     this.list = this.list.sort((a1, a2) => a1.task.localeCompare(a2.task));
                     break;
                 case "date":
-                    this.list = this.list.sort((a1, a2) => (
-                        a1.date === null && a2.date === null) ? 0 :
-                        a1.date === null ? 1 :
-                            a2.date === null ? -1 :
-                                (a1.date?.getTime() || 1) - (a2.date?.getTime() || 1));
+
+                    console.log(1);
+                    this.list = this.list.sort((a1, a2) =>
+                        (a1.date == null && a2.date == null) ? 0 :
+                            a1.date == null ? 1 :
+                                a2.date == null ? -1 :
+                                    a1.date.getTime() - a2.date.getTime());
                     break;
                 case "done":
-                    this.list = this.list.sort((a1, a2) =>
-                        (a1.done && !a2.done) ? -1 :
-                            (!a1.done && a2.done) ? 1 :
-                                0);
-                    break;
                 case "important":
                     this.list = this.list.sort((a1, a2) =>
-                        (a1.important && !a2.important) ? -1 :
-                            (!a1.important && a2.important) ? 1 :
+                        (a1[tag] && !a2[tag]) ? -1 :
+                            (!a1[tag] && a2[tag]) ? 1 :
                                 0);
-                    break;
-                case '':
                     break;
                 default:
                     break;
