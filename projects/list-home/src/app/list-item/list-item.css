@@ -1,31 +1,57 @@
-li {
+.item {
+    display: flex;
     padding: 12px;
-    padding-left: 40px;
-    list-style: inside url(../../assets/unchecked_16.png);
+    gap: 10px;
+    align-items: center;
+    background-color: rgb(174, 216, 229);
+    cursor: auto;
 }
 
-li.done {
-    background-color: rgb(226, 226, 226) !important;
-    list-style: inside url(../../assets/checked_16.png);
+.ever {
+    background-color: rgb(153, 201, 218);
+}
+
+.item::before {
+    content: url(../../assets/unchecked_16.png);
+}
+
+.done {
+    background-color: rgb(226, 226, 226);
+}
+
+.done .content {
     text-decoration: line-through;
     text-decoration-thickness: 2px;
 }
 
-li.important::before {
-    content: "!";
-    margin: 0 8px;
-    color: darkred;
-    display: inline-block;
+.item.done::before {
+    content: url(../../assets/checked_16.png);
 }
 
-li .deadline {
+.item:hover {
+    filter: brightness(90%);
+}
+
+.item>span:last-child {
+    transform: scale(1.5);
+    cursor: pointer;
+}
+
+.important::before {
+    content: "!";
+    margin-right: 2px;
+    color: darkred;
+}
+
+.deadline {
     background-color: rgb(120, 153, 164);
     color: white;
     border-radius: 3px;
     padding: 2px 4px;
 }
 
-li:hover {
-    filter: brightness(90%);
-    cursor: pointer;
+div>span:first-child {
+    display: flex;
+    gap: 10px;
+    flex: 1;
 }

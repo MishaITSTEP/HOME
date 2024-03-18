@@ -1,6 +1,7 @@
-<li class="task-card" [class.done]="task.done" [class.important]="task.important">
-    {{task.task}}
-    @if (task.date) {<span class="deadline">
-        {{task.date.getFullYear()}}.{{task.date.getMonth().toString().padStart(2,'0')}}.{{task.date.getDay().toString().padStart(2,'0')}}
-    </span>}
-</li>
+<div (click)="item.done=!item.done" class="item" [class.done]="item.done" [class.ever]="index%2==0">
+    <span class="content">
+        <span [class.important]="item.important" #a>{{item.task}}</span>
+    </span>
+   <span *ngIf="item.date" class="deadline">{{item.date|date:"dd/MM/yyyy"}}</span>
+    <span (click)="item_remoteItem(index)">❌</span>
+</div>

@@ -10,13 +10,13 @@ export const ITEMS: IListItem[] = [
         done: false,
         important: false,
         task: "Hit the gym",
-        date: new Date(2023, 4, 1)
+        date: new Date(2023, 3, 1)
     },
     {
         done: true,
         important: true,
         task: "Pay bills",
-        date: new Date(2023, 3, 29)
+        date: new Date(2023, 2, 29)
     },
     {
         done: false,
@@ -28,7 +28,7 @@ export const ITEMS: IListItem[] = [
         done: false,
         important: true,
         task: "Buy eggs",
-        date: new Date(2023, 3, 29)
+        date: new Date(2023, 2, 29)
     },
     {
         done: true,
@@ -52,7 +52,7 @@ export const ITEMS: IListItem[] = [
         done: false,
         important: true,
         task: "Buy apples",
-        date: new Date(2023, 3, 5)
+        date: new Date(2023, 2, 5)
     },
     {
         done: false,
@@ -76,6 +76,6 @@ export const ITEMS: IListItem[] = [
         done: false,
         important: false,
         task: "Run 1 km",
-        date: new Date(2022, 1, 15)
+        date: new Date(2022, 0, 15)
     }
 ];
